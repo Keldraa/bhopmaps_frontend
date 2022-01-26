@@ -172,20 +172,21 @@ const Map: React.FC<{ data: any }> = ({ data }) => {
                                     </Button>
                                 </NextLink>
                                 {map.authorId === user?.id ? (
-                                    <>
-                                        <VStack>
-                                            <Button
-                                                isLoading={isloading}
-                                                colorScheme='red'
-                                                onClick={handleDelete}
-                                            >
-                                                Delete Map
-                                            </Button>
-                                            <Link color='gray.500' href={`/map/edit/${map.id}`}>
-                                                Edit Map
-                                            </Link>
-                                        </VStack>
-                                    </>
+                                    <HStack>
+                                        <Button
+                                            isLoading={isloading}
+                                            colorScheme='red'
+                                            onClick={handleDelete}
+                                        >
+                                            Delete Map
+                                        </Button>
+                                        <Link
+                                            color='gray.500'
+                                            href={`/maps/edit/${map.id}`}
+                                        >
+                                            Edit Map
+                                        </Link>
+                                    </HStack>
                                 ) : (
                                     <></>
                                 )}
