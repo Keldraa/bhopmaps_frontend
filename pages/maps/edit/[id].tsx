@@ -50,10 +50,12 @@ const Map: React.FC<{ data: any }> = ({ data }) => {
         e.preventDefault();
         setSubmitting(true);
 
-        if (mapName === '' || description === '') {
-            setError('Please fill in all fields');
-            setSubmitting(false);
-            return;
+        if (mapName === '') {
+            setMapname(map.mapName);
+        }
+
+        if (description === '') {
+            setDescription(map.description);
         }
 
         await fetch(`${API_URL}/map/${map.id}/update`, {
@@ -82,7 +84,7 @@ const Map: React.FC<{ data: any }> = ({ data }) => {
     return (
         <>
             {map.authorId === user?.id ? (
-                <VStack>
+                <VStack spacing={4} alignItems='flex-start'>
                     <FormControl isRequired isDisabled={submitting}>
                         <FormLabel htmlFor='mapName'>Map Name</FormLabel>
                         <Input
