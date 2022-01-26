@@ -56,7 +56,7 @@ const Map: React.FC<{ data: any }> = ({ data }) => {
             return;
         }
 
-        await fetch(`${API_URL}/maps/edit/${map.id}`, {
+        await fetch(`${API_URL}/map/${map.id}/update`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -82,8 +82,6 @@ const Map: React.FC<{ data: any }> = ({ data }) => {
     return (
         <>
             {map.authorId === user?.id ? (
-                <></>
-            ) : (
                 <VStack>
                     <FormControl isRequired isDisabled={submitting}>
                         <FormLabel htmlFor='mapName'>Map Name</FormLabel>
@@ -111,6 +109,8 @@ const Map: React.FC<{ data: any }> = ({ data }) => {
                         </Button>
                     </FormControl>
                 </VStack>
+            ) : (
+                <Text>You are not the author of this map</Text>
             )}
         </>
     );

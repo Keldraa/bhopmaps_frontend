@@ -39,10 +39,6 @@ const Map: React.FC<{ data: any }> = ({ data }) => {
     const [isloading, setLoading] = React.useState(false);
     const [error, setError] = React.useState('');
 
-    const [mapName, setMapName] = React.useState('');
-    const [mapDescription, setDescription] = React.useState('');
-    const [submitting, setSubmitting] = React.useState(false);
-
     const renderers = {
         code: (props: any) => {
             return (
@@ -177,17 +173,18 @@ const Map: React.FC<{ data: any }> = ({ data }) => {
                                 </NextLink>
                                 {map.authorId === user?.id ? (
                                     <>
-                                        <Link href={`/map/edit/${map.id}`}>
-                                            Edit Map
-                                        </Link>
-
-                                        <Button
-                                            isLoading={isloading}
-                                            colorScheme='red'
-                                            onClick={handleDelete}
-                                        >
-                                            Delete Map
-                                        </Button>
+                                        <VStack>
+                                            <Button
+                                                isLoading={isloading}
+                                                colorScheme='red'
+                                                onClick={handleDelete}
+                                            >
+                                                Delete Map
+                                            </Button>
+                                            <Link color='gray.500' href={`/map/edit/${map.id}`}>
+                                                Edit Map
+                                            </Link>
+                                        </VStack>
                                     </>
                                 ) : (
                                     <></>
