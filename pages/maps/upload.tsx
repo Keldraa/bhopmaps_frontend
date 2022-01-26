@@ -84,8 +84,8 @@ const Upload = () => {
                 body: formData,
                 credentials: 'include',
             }).then((res) => {
-                if (description.length > 1000) {
-                    setError('Description must be less than 1000 characters');
+                if (description.length > 3000) {
+                    setError('Description must be less than 3000 characters');
                     setSubmitting(false);
                     setTimeout(() => {
                         setError('');
@@ -169,7 +169,7 @@ const Upload = () => {
                             maxHeight={400}
                         />
                         <Text fontSize='sm' color='gray.500'>
-                            {description.length} / 1000{' '}
+                            {description.length} / 3000{' '}
                         </Text>
 
                         <FormLabel htmlFor='file'>Choose file</FormLabel>
