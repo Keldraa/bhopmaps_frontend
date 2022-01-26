@@ -41,7 +41,7 @@ const Footer: React.FC<any> = ({ props: any }) => {
                     <Button size='sm' onClick={handleRouteSearchUser}>
                         Search users
                     </Button>
-                    <Link href='https://discord.gg/h4Jemkm35Q'>
+                    <Link href='https://discord.gg/h4Jemkm35Q' target="_blank">
                         Join our Discord
                     </Link>
                 </HStack>
