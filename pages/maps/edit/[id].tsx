@@ -78,7 +78,7 @@ const Map: React.FC<{ data: any }> = ({ data }) => {
                 <VStack spacing={4} alignItems='flex-start'>
                     <Heading>Edit {map.mapName}</Heading>
                     <FormControl isRequired isDisabled={submitting}>
-                        <VStack spacing={4}>
+                        <VStack spacing={4} alignItems='flex-start'>
                             <FormLabel htmlFor='mapName'>Map Name</FormLabel>
                             <Input
                                 id='mapName'
