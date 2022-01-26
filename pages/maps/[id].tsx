@@ -137,8 +137,30 @@ const Map: React.FC<{ data: any; userFetched: any }> = ({
                         >
                             <HStack justifyContent='center' spacing={4}>
                                 <VStack alignItems='flex-start'>
-                                    <Heading>{map.mapName}</Heading>
-                                    <VStack>
+                                        <Stack
+                                            justifyContent={{
+                                                base: 'flex-start',
+                                                md: 'space-between',
+                                            }}
+                                            direction={{
+                                                base: 'column',
+                                                md: 'row',
+                                            }}
+                                            w='md'
+                                        >
+                                            <Heading>{map.mapName}</Heading>
+                                            <HStack>
+                                                <NextLink href='/' passHref>
+                                                    <Button
+                                                        size='sm'
+                                                        variant='solid'
+                                                    >
+                                                        Back
+                                                    </Button>
+                                                </NextLink>
+                                            </HStack>
+                                        </Stack>
+                                    <VStack alignItems='flex-start'>
                                         <HStack>
                                             <Text color='gray.500'>
                                                 Published on
@@ -209,13 +231,6 @@ const Map: React.FC<{ data: any; userFetched: any }> = ({
                                     </HStack>
                                 </VStack>
                             </HStack>
-                            <HStack>
-                                <NextLink href='/' passHref>
-                                    <Button size='md' variant='solid'>
-                                        Back
-                                    </Button>
-                                </NextLink>
-                            </HStack>
                         </Stack>
                         <VStack alignItems='flex-start'>
                             <Image
@@ -229,10 +244,10 @@ const Map: React.FC<{ data: any; userFetched: any }> = ({
                     <VStack
                         alignItems='flex-start'
                         spacing={8}
-                        mt={8}
+                        mt='20'
                         width='100%'
                     >
-                        <Heading size='lg'>Description</Heading>
+                        <Heading size='md' color='gray.500'>Description</Heading>
                         <Divider />
                         <Box>
                             <ReactMarkdown
