@@ -70,12 +70,13 @@ const Map: React.FC<{ data: any }> = ({ data }) => {
             if (res.status === 201) {
                 setSuccess(true);
                 setSubmitting(false);
+                Router.push(`/maps/${map.id}`);
             } else {
                 setError('Something went wrong');
                 setSubmitting(false);
             }
 
-            Router.push(`/maps/${map.id}`);
+            
         });
     };
 
