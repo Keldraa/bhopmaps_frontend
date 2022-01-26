@@ -164,28 +164,28 @@ const Map: React.FC<{ data: any; userFetched: any }> = ({
                                                     {map.author}
                                                 </Link>
                                             </HStack>
-                                            {map.authorId === user?.id ? (
-                                                <HStack>
-                                                    <Button
-                                                        size='sm'
-                                                        isLoading={isloading}
-                                                        colorScheme='red'
-                                                        onClick={handleDelete}
-                                                    >
-                                                        Delete Map
-                                                    </Button>
-                                                    <Link
-                                                        fontSize='sm'
-                                                        color='gray.500'
-                                                        href={`/maps/edit/${map.id}`}
-                                                    >
-                                                        Edit Map
-                                                    </Link>
-                                                </HStack>
-                                            ) : (
-                                                <></>
-                                            )}
                                         </HStack>
+                                        {map.authorId === user?.id ? (
+                                            <HStack>
+                                                <Button
+                                                    size='sm'
+                                                    isLoading={isloading}
+                                                    colorScheme='red'
+                                                    onClick={handleDelete}
+                                                >
+                                                    Delete Map
+                                                </Button>
+                                                <Link
+                                                    fontSize='sm'
+                                                    color='gray.500'
+                                                    href={`/maps/edit/${map.id}`}
+                                                >
+                                                    Edit Map
+                                                </Link>
+                                            </HStack>
+                                        ) : (
+                                            <></>
+                                        )}
                                     </VStack>
                                     <HStack>
                                         <Tag colorScheme='cyan'>
