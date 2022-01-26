@@ -108,17 +108,13 @@ const Header: React.FC<any> = ({ props: any }) => {
         Router.push('/maps/upload');
     };
 
-    const handleDiscord = () => {
-        Router.push('https://discord.gg/h4Jemkm35Q');
-    };
-
     const handleEditUser = () => {
         const authUrl = `${API_URL}/user/edit`;
 
         let bodyUsername, bodyAvatar;
 
         if (username.trim().length < 3) {
-            setErrorModal('Username must be at least 3 characters long');
+            setErrorModal('Username must be at least 3 characters');
             setTimeout(() => {
                 setErrorModal('');
             }, 3000);
@@ -231,12 +227,6 @@ const Header: React.FC<any> = ({ props: any }) => {
                                         onClick={onOpen}
                                     >
                                         Settings
-                                    </MenuItem>
-                                    <MenuItem
-                                        icon={<BsDiscord />}
-                                        onClick={handleDiscord}
-                                    >
-                                        Get help
                                     </MenuItem>
                                     <MenuItem
                                         icon={<AiOutlineLogout />}

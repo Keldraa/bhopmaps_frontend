@@ -33,7 +33,21 @@ const Map: React.FC<{ data: any }> = ({ data }) => {
             setMapname(map.mapName);
         }
 
-        if (description === '') {
+        if (mapName.trim().length < 5) {
+            setError('Map name must be at least 5 characters');
+
+            setTimeout(() => {
+                setError('');
+            }, 3000);
+
+            setSubmitting(false);
+            return;
+        }
+
+
+
+        if (description.trim().length < 10) {
+            setError('Description must be at least 10 characters');
             setDescription(map.description);
         }
 
