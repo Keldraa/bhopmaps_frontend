@@ -7,6 +7,7 @@ import {
     Input,
     Textarea,
     Heading,
+    Link,
 } from '@chakra-ui/react';
 import { GetServerSideProps } from 'next';
 import React, { useContext } from 'react';
@@ -100,10 +101,11 @@ const Map: React.FC<{ data: any }> = ({ data }) => {
                                 onChange={(e) => setDescription(e.target.value)}
                             />
 
-                            <Button onClick={handleSubmit}>
+                            <Button colorScheme='blue' onClick={handleSubmit}>
                                 {' '}
                                 {submitting ? 'Submitting...' : 'Submit'}
                             </Button>
+                            <Link href={`/maps/${map.id}`}>Cancel</Link>
                         </VStack>
                     </FormControl>
                     <DynamicAlert
