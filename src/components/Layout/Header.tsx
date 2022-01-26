@@ -117,6 +117,14 @@ const Header: React.FC<any> = ({ props: any }) => {
 
         let bodyUsername, bodyAvatar;
 
+        if (username.trim().length < 3) {
+            setErrorModal('Username must be at least 3 characters long');
+            setTimeout(() => {
+                setErrorModal('');
+            }, 3000);
+            return;
+        }
+
         if (username === '') {
             bodyUsername = user?.username;
         }
