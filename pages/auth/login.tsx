@@ -37,6 +37,17 @@ const Login = () => {
             }, 3000);
             return;
         }
+
+        if (username.length < 3 || password.length < 3) {
+            setError(
+                'Username and password must be at least 3 characters long'
+            );
+            setTimeout(() => {
+                setError('');
+                setLoading(false);
+            }, 3000);
+            return;
+        }
         const authUrl = `${API_URL}/login`;
         // fetch from server
         const getToken = fetch(authUrl, {
