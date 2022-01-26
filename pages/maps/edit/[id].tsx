@@ -44,8 +44,6 @@ const Map: React.FC<{ data: any }> = ({ data }) => {
             return;
         }
 
-
-
         if (description.trim().length < 10) {
             setError('Description must be at least 10 characters');
             setDescription(map.description);
