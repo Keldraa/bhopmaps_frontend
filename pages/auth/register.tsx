@@ -37,7 +37,7 @@ const Register: React.FC<any> = ({ props: any }) => {
             return;
         }
 
-        if (username.length < 3) {
+        if (username.trim().length < 3) {
             setError('Username must be at least 3 characters');
             setTimeout(() => {
                 setError('');
