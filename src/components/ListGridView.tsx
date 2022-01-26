@@ -20,6 +20,7 @@ import {
     Grid,
     GridItem,
     Divider,
+    Avatar,
 } from '@chakra-ui/react';
 import { HiDownload, HiOutlineSearch } from 'react-icons/hi';
 import Head from 'next/head';
@@ -30,9 +31,11 @@ import { BsFillGridFill, BsList } from 'react-icons/bs';
 import { createDate } from 'src/utils/createDate';
 import config from '../../config.json';
 import { Map } from 'src/api/types';
-import Router from 'next/router';
+import { UserContext } from 'src/api/UserContext';
+import { GetServerSideProps } from 'next';
 
 const ListGridView: React.FC<any> = ({ data }) => {
+    const { user } = React.useContext(UserContext);
     const maps = data;
     const description = config.description;
 
@@ -214,7 +217,10 @@ const ListGridView: React.FC<any> = ({ data }) => {
                                                             </Tag>
                                                         )}
                                                     </HStack>
-                                                    <Text color='gray.500'>
+                                                    <Text
+                                                        color='gray.400'
+                                                        fontSize='lg'
+                                                    >
                                                         by {map.author}
                                                     </Text>
                                                 </VStack>
@@ -322,7 +328,10 @@ const ListGridView: React.FC<any> = ({ data }) => {
                                                         </Tag>
                                                     )}
                                                 </HStack>
-                                                <Text color='gray.500'>
+                                                <Text
+                                                    color='gray.400'
+                                                    fontSize='lg'
+                                                >
                                                     by {map.author}
                                                 </Text>
                                                 <Text color='gray.500'>

@@ -15,6 +15,7 @@ import {
     FormControl,
     FormLabel,
     Input,
+    Avatar,
 } from '@chakra-ui/react';
 import { GetServerSideProps } from 'next';
 import React, { useContext } from 'react';
@@ -32,8 +33,13 @@ import { formatNumber } from 'src/utils/numberFormatter';
 import DynamicAlert from '../../src/components/DynamicAlert';
 import { NextSeo } from 'next-seo';
 
-const Map: React.FC<{ data: any }> = ({ data }) => {
+const Map: React.FC<{ data: any; userFetched: any }> = ({
+    data,
+    userFetched,
+}) => {
     const { map } = data;
+
+    const { userData } = userFetched
     const { colorMode, toggleColorMode } = useColorMode();
     const { user } = useContext(UserContext);
     const [isloading, setLoading] = React.useState(false);
@@ -194,15 +200,20 @@ const Map: React.FC<{ data: any }> = ({ data }) => {
                         </Stack>
                         <VStack alignItems='flex-start'>
                             <HStack>
-                                <Text color='gray.500'>by</Text>
-                                <Link
-                                    fontWeight='bold'
-                                    color='blue.600'
-                                    href={`/user/${map.author}`}
-                                >
-                                    {' '}
-                                    {map.author}
-                                </Link>
+                                <HStack>
+                                    <Avatar
+                                        size='xs'
+                                        src={userData?.avatar}
+                                    />
+                                    <Link
+                                        fontWeight='bold'
+                                        color='blue.600'
+                                        href={`/user/${map.author}`}
+                                    >
+                                        {' '}
+                                        {map.author}
+                                    </Link>
+                                </HStack>
                             </HStack>
 
                             <Image
@@ -261,9 +272,13 @@ export const getServerSideProps: GetServerSideProps = async ({
     const result = await fetch(`${API_URL}/map/${id}`);
     const data: any = await result.json();
 
+    const resultUser = await fetch(`${API_URL}/user/${data.map.author}`);
+
+    const userFetched = await resultUser.json();
     return {
         props: {
             data,
+            userFetched,
         },
     };
 };
