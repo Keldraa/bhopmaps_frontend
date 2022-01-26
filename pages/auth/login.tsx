@@ -38,7 +38,6 @@ const Login = () => {
             return;
         }
 
-        
         const authUrl = `${API_URL}/login`;
         // fetch from server
         const getToken = fetch(authUrl, {
