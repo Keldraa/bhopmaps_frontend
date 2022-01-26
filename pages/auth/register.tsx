@@ -74,6 +74,14 @@ const Register: React.FC<any> = ({ props: any }) => {
                 password,
             }),
         }).then((response) => {
+            if (response.status === 429) {
+                setError('Too many requests');
+                setTimeout(() => {
+                    setError('');
+                }, 2000);
+                return;
+            }
+
             setSuccess(true);
             setTimeout(() => {
                 setSuccess(false);

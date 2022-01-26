@@ -12,6 +12,9 @@ import {
     TagRightIcon,
     Stack,
     Divider,
+    FormControl,
+    FormLabel,
+    Input,
 } from '@chakra-ui/react';
 import { GetServerSideProps } from 'next';
 import React, { useContext } from 'react';
@@ -35,6 +38,10 @@ const Map: React.FC<{ data: any }> = ({ data }) => {
     const { user } = useContext(UserContext);
     const [isloading, setLoading] = React.useState(false);
     const [error, setError] = React.useState('');
+
+    const [mapName, setMapName] = React.useState('');
+    const [mapDescription, setDescription] = React.useState('');
+    const [submitting, setSubmitting] = React.useState(false);
 
     const renderers = {
         code: (props: any) => {
@@ -169,13 +176,19 @@ const Map: React.FC<{ data: any }> = ({ data }) => {
                                     </Button>
                                 </NextLink>
                                 {map.authorId === user?.id ? (
-                                    <Button
-                                        isLoading={isloading}
-                                        colorScheme='red'
-                                        onClick={handleDelete}
-                                    >
-                                        Delete Map
-                                    </Button>
+                                    <>
+                                        <Link href={`/map/edit/${map.id}`}>
+                                            Edit Map
+                                        </Link>
+
+                                        <Button
+                                            isLoading={isloading}
+                                            colorScheme='red'
+                                            onClick={handleDelete}
+                                        >
+                                            Delete Map
+                                        </Button>
+                                    </>
                                 ) : (
                                     <></>
                                 )}
