@@ -39,7 +39,7 @@ const Map: React.FC<{ data: any; userFetched: any }> = ({
 }) => {
     const { map } = data;
 
-    const { userData } = userFetched
+    const { userData } = userFetched;
     const { colorMode, toggleColorMode } = useColorMode();
     const { user } = useContext(UserContext);
     const [isloading, setLoading] = React.useState(false);
@@ -138,17 +138,55 @@ const Map: React.FC<{ data: any; userFetched: any }> = ({
                             <HStack justifyContent='center' spacing={4}>
                                 <VStack alignItems='flex-start'>
                                     <Heading>{map.mapName}</Heading>
-                                    <HStack>
-                                        <Text color='gray.500'>
-                                            Published on
-                                        </Text>
-                                        <Text
-                                            color='gray.500'
-                                            fontWeight='bold'
-                                        >
-                                            {createDate(map.createdAt)}
-                                        </Text>
-                                    </HStack>
+                                    <VStack>
+                                        <HStack>
+                                            <Text color='gray.500'>
+                                                Published on
+                                            </Text>
+
+                                            <Text
+                                                color='gray.500'
+                                                fontWeight='bold'
+                                            >
+                                                {createDate(map.createdAt)}
+                                            </Text>
+                                            <HStack>
+                                                <Avatar
+                                                    size='xs'
+                                                    src={userData?.avatar}
+                                                />
+                                                <Link
+                                                    fontWeight='bold'
+                                                    color='blue.600'
+                                                    href={`/user/${map.author}`}
+                                                >
+                                                    {' '}
+                                                    {map.author}
+                                                </Link>
+                                            </HStack>
+                                            {map.authorId === user?.id ? (
+                                                <HStack>
+                                                    <Button
+                                                        size='sm'
+                                                        isLoading={isloading}
+                                                        colorScheme='red'
+                                                        onClick={handleDelete}
+                                                    >
+                                                        Delete Map
+                                                    </Button>
+                                                    <Link
+                                                        fontSize='sm'
+                                                        color='gray.500'
+                                                        href={`/maps/edit/${map.id}`}
+                                                    >
+                                                        Edit Map
+                                                    </Link>
+                                                </HStack>
+                                            ) : (
+                                                <></>
+                                            )}
+                                        </HStack>
+                                    </VStack>
                                     <HStack>
                                         <Tag colorScheme='cyan'>
                                             <TagLabel>
@@ -177,45 +215,9 @@ const Map: React.FC<{ data: any; userFetched: any }> = ({
                                         Back
                                     </Button>
                                 </NextLink>
-                                {map.authorId === user?.id ? (
-                                    <HStack>
-                                        <Button
-                                            isLoading={isloading}
-                                            colorScheme='red'
-                                            onClick={handleDelete}
-                                        >
-                                            Delete Map
-                                        </Button>
-                                        <Link
-                                            color='gray.500'
-                                            href={`/maps/edit/${map.id}`}
-                                        >
-                                            Edit Map
-                                        </Link>
-                                    </HStack>
-                                ) : (
-                                    <></>
-                                )}
                             </HStack>
                         </Stack>
                         <VStack alignItems='flex-start'>
-                            <HStack>
-                                <HStack>
-                                    <Avatar
-                                        size='xs'
-                                        src={userData?.avatar}
-                                    />
-                                    <Link
-                                        fontWeight='bold'
-                                        color='blue.600'
-                                        href={`/user/${map.author}`}
-                                    >
-                                        {' '}
-                                        {map.author}
-                                    </Link>
-                                </HStack>
-                            </HStack>
-
                             <Image
                                 src={map.thumbnail}
                                 alt='Map thumbnail'
