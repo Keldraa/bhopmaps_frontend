@@ -47,8 +47,12 @@ const Map: React.FC<{ data: any }> = ({ data }) => {
 
         if (description.trim().length < 10) {
             setError('Description must be at least 10 characters');
+
             setDescription(map.description);
-            setSubmitting(false)
+            setSubmitting(false);
+            setTimeout(() => {
+                setError('');
+            }, 3000);
             return;
         }
 
@@ -115,6 +119,13 @@ const Map: React.FC<{ data: any }> = ({ data }) => {
                         message={error}
                         showAlert={error ? true : false}
                     />
+                    {success && (
+                        <DynamicAlert
+                            status='success'
+                            message='Map updated successfully'
+                            showAlert={success ? true : false}
+                        />
+                    )}
                 </VStack>
             ) : (
                 <Text>You are not the author of this map</Text>

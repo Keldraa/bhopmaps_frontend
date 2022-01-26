@@ -32,7 +32,6 @@ const Profile: React.FC<{ data: any; maps: any }> = ({ data, maps }) => {
                         },
                     ],
                     site_name: 'www.bhopmaps.app',
-                    url: `https://www.bhopmaps.app/user/${data.userData?.username}`,
                 }}
             />
             {data.statusCode != 400 ? (
