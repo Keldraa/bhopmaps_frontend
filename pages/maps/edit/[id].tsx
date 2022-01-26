@@ -60,7 +60,7 @@ const Map: React.FC<{ data: any }> = ({ data }) => {
                 description,
             }),
         }).then((res) => {
-            if (res.status === 200) {
+            if (res.status === 201) {
                 setSuccess(true);
                 setSubmitting(false);
             } else {
