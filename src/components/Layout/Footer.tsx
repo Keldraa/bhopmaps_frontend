@@ -1,9 +1,10 @@
-import { Button, HStack, Text, useColorMode } from '@chakra-ui/react';
+import { Button, HStack, Stack, Text, useColorMode } from '@chakra-ui/react';
 import React from 'react';
 import NextImage from 'next/image';
 import LogoDark from '../../../public/logo_dark.svg';
 import LogoLight from '../../../public/logo_light.svg';
 import Router from 'next/router';
+import { Link } from '@chakra-ui/react';
 
 const Footer: React.FC<any> = ({ props: any }) => {
     const { colorMode, toggleColorMode } = useColorMode();
@@ -13,18 +14,36 @@ const Footer: React.FC<any> = ({ props: any }) => {
     };
     return (
         <>
-            <HStack justifyContent='center' spacing={{ base: 0, sm: 2 }} py={2}>
-                <NextImage
-                    src={colorMode === 'light' ? LogoLight : LogoDark}
-                    alt='Logo'
-                    width={32}
-                    height={32}
-                />
-                <Text fontWeight='bold'>© 2022 bhopmaps</Text>
-                <Button size='sm' onClick={handleRouteSearchUser}>
-                    Search users
-                </Button>
-            </HStack>
+            <Stack
+                display='flex'
+                justifyContent={{
+                    base: 'center',
+                    md: 'space-between',
+                }}
+                width='full'
+                direction={{
+                    base: 'column',
+                    md: 'row',
+                }}
+                alignItems='flex-start'
+            >
+                <HStack>
+                    <NextImage
+                        src={colorMode === 'light' ? LogoLight : LogoDark}
+                        alt='Logo'
+                        width={32}
+                        height={32}
+                    />
+                    <Text fontWeight='bold'>© 2022 bhopmaps</Text>
+                </HStack>
+
+                <HStack spacing={4}>
+                    <Button size='sm' onClick={handleRouteSearchUser}>
+                        Search users
+                    </Button>
+                    <Link href='https://discord.gg/h4Jemkm35Q'>Join our Discord</Link>
+                </HStack>
+            </Stack>
         </>
     );
 };
