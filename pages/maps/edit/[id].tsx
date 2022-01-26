@@ -78,29 +78,33 @@ const Map: React.FC<{ data: any }> = ({ data }) => {
                 <VStack spacing={4} alignItems='flex-start'>
                     <Heading>Edit {map.mapName}</Heading>
                     <FormControl isRequired isDisabled={submitting}>
-                        <FormLabel htmlFor='mapName'>Map Name</FormLabel>
-                        <Input
-                            id='mapName'
-                            placeholder={map.mapName}
-                            value={mapName}
-                            type='text'
-                            onChange={(e) => setMapname(e.target.value)}
-                        />
+                        <VStack spacing={4}>
+                            <FormLabel htmlFor='mapName'>Map Name</FormLabel>
+                            <Input
+                                id='mapName'
+                                placeholder={map.mapName}
+                                value={mapName}
+                                type='text'
+                                onChange={(e) => setMapname(e.target.value)}
+                            />
 
-                        <FormLabel htmlFor='description'>Description</FormLabel>
-                        <Textarea
-                            id='description'
-                            placeholder={map.description}
-                            value={description}
-                            minHeight={500}
-                            resize='vertical'
-                            onChange={(e) => setDescription(e.target.value)}
-                        />
+                            <FormLabel htmlFor='description'>
+                                Description
+                            </FormLabel>
+                            <Textarea
+                                id='description'
+                                placeholder={map.description}
+                                value={description}
+                                minHeight={500}
+                                resize='vertical'
+                                onChange={(e) => setDescription(e.target.value)}
+                            />
 
-                        <Button onClick={handleSubmit}>
-                            {' '}
-                            {submitting ? 'Submitting...' : 'Submit'}
-                        </Button>
+                            <Button onClick={handleSubmit}>
+                                {' '}
+                                {submitting ? 'Submitting...' : 'Submit'}
+                            </Button>
+                        </VStack>
                     </FormControl>
                     <DynamicAlert
                         status='error'
