@@ -1,43 +1,22 @@
 import {
     VStack,
-    Heading,
     Text,
-    Image,
     Button,
-    Link,
-    Box,
-    HStack,
-    Tag,
-    TagLabel,
-    TagRightIcon,
-    Stack,
-    Divider,
     FormControl,
     FormLabel,
     Input,
     Textarea,
+    Heading,
 } from '@chakra-ui/react';
-import { GetServerSideProps, GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import React, { useContext } from 'react';
 import { API_URL, UserContext } from 'src/api/UserContext';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { useColorMode } from '@chakra-ui/react';
-import darkTheme from 'react-syntax-highlighter/dist/esm/styles/prism/dracula';
-import lightTheme from 'react-syntax-highlighter/dist/esm/styles/prism/base16-ateliersulphurpool.light';
-import ReactMarkdown from 'react-markdown';
-import NextLink from 'next/link';
-import { createDate } from 'src/utils/createDate';
-import Router, { useRouter } from 'next/router';
-import { HiDownload } from 'react-icons/hi';
-import { formatNumber } from 'src/utils/numberFormatter';
+import Router from 'next/router';
 import DynamicAlert from 'src/components/DynamicAlert';
-import { NextSeo } from 'next-seo';
 
 const Map: React.FC<{ data: any }> = ({ data }) => {
     const { map } = data;
-    const { colorMode, toggleColorMode } = useColorMode();
     const { user } = useContext(UserContext);
-    const [isloading, setLoading] = React.useState(false);
     const [error, setError] = React.useState('');
 
     const [mapName, setMapname] = React.useState('');
@@ -85,6 +64,7 @@ const Map: React.FC<{ data: any }> = ({ data }) => {
         <>
             {map.authorId === user?.id ? (
                 <VStack spacing={4} alignItems='flex-start'>
+                    <Heading>Edit {map.mapName}</Heading>
                     <FormControl isRequired isDisabled={submitting}>
                         <FormLabel htmlFor='mapName'>Map Name</FormLabel>
                         <Input
@@ -110,6 +90,11 @@ const Map: React.FC<{ data: any }> = ({ data }) => {
                             {submitting ? 'Submitting...' : 'Submit'}
                         </Button>
                     </FormControl>
+                    <DynamicAlert
+                        status='error'
+                        message={error}
+                        showAlert={error ? true : false}
+                    />
                 </VStack>
             ) : (
                 <Text>You are not the author of this map</Text>
