@@ -102,12 +102,12 @@ const Map: React.FC<{ data: any; userFetched: any }> = ({
     return (
         <>
             <NextSeo
-                title={`${map.mapName} - Bunnyhop Map`}
+                title={`${map.mapName} - Bunnyhop Map (${map.gameType})`}
                 description={`Published by ${map.author} on ${createDate(
                     map.createdAt
-                )}`}
+                )}`}  
                 openGraph={{
-                    title: `${map.mapName} - Bunnyhop Map`,
+                    title: `${map.mapName} - Bunnyhop Map (${map.gameType})`,
                     description: `Published by ${map.author} on ${createDate(
                         map.createdAt
                     )}`,
@@ -117,7 +117,9 @@ const Map: React.FC<{ data: any; userFetched: any }> = ({
                         },
                     ],
                     site_name: 'www.bhopmaps.app',
+                    url: `https://www.bhopmaps.app/maps/${map.id}`,
                 }}
+
             />
             {data.statusCode != 400 ? (
                 <Box alignItems='flex-start'>
